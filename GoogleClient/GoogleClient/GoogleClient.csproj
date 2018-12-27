@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard2.0;MonoAndroid80;Xamarin.iOS10;</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;MonoAndroid80;Xamarin.iOS10;uap10.0.16299</TargetFrameworks>
     <AssemblyName>Plugin.GoogleClient</AssemblyName>
     <RootNamespace>Plugin.GoogleClient</RootNamespace>
     <PackageId>Plugin.GoogleClient</PackageId>
@@ -44,12 +44,15 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
   </ItemGroup>
 
-  <!--
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0.15063' ">
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.2.3" />
+  
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10')) ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
+    <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
     <Compile Include="Platforms\UWP\**\*.cs" />
   </ItemGroup>
-  -->
+  
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid80')) ">
     <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="60.1142.1"/>
