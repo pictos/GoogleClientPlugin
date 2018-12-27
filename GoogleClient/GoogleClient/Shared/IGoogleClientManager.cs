@@ -82,6 +82,8 @@ namespace Plugin.GoogleClient
         void Logout();
         string ActiveToken { get; }
         //DateTime TokenExpirationDate { get; }
+
+        Task UserInfo(object o);
     }
     
 }

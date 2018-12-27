@@ -311,5 +311,7 @@ namespace Plugin.GoogleClient
                 _loginTcs.TrySetResult(new GoogleResponse<GoogleUser>(googleArgs));
                 _onLogin?.Invoke(this, googleArgs);
         }
+
+        public Task UserInfo(object o) => Task.CompletedTask;
     }
 }

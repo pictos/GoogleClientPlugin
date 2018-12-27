@@ -291,5 +291,8 @@ namespace Plugin.GoogleClient
             
             OnSignInFailed(result);
         }
+
+        public Task UserInfo(object o) =>
+            Task.CompletedTask;
     }
 }
