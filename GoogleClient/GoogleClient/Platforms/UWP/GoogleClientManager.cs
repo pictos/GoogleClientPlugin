@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using static System.Diagnostics.Debug;
 using System.Net;
 using System.Net.Sockets;
@@ -52,21 +51,14 @@ namespace Plugin.GoogleClient
             localSettings.Values["state"] = state;
             localSettings.Values["code_verifier"] = code_verifier;
 
-            string authorizationRequest = string.Format("{0}?response_type=code&scope=openid%20profile&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
-                                                         authorizationEndpoint,
-                                                         Uri.EscapeDataString(redirectURI),
-                                                         clientID,
-                                                         state,
-                                                         code_challenge,
-                                                         code_challenge_method);
+            string authorizationRequest = $"{authorizationEndpoint}?response_type=code&scope=openid%20profile&redirect_uri={Uri.EscapeDataString(redirectURI)}&client_id={clientID}&state={state}&code_challenge={code_challenge}&code_challenge_method={code_challenge_method}";
 
             WriteLine("Opening authorization request URI: " + authorizationRequest);
 
             // Opens the Authorization URI in the browser.
             var success = Launcher.LaunchUriAsync(new Uri(authorizationRequest));
 
-            var user = new GoogleUser();
-            var response = new GoogleResponse<GoogleUser>(user,GoogleActionStatus.Completed);
+            var response = new GoogleResponse<GoogleUser>(new GoogleUser(),GoogleActionStatus.Completed);
             return Task.FromResult(response);
         }
 

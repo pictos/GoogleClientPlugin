@@ -99,6 +99,7 @@ namespace TestAPp.UWP
             deferral.Complete();
         }
 
+        // Colocar isso no App.xam.cs
         protected override void OnActivated(IActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.Protocol)
